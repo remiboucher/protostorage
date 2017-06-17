@@ -1,6 +1,6 @@
-package com.projctr.protostore.util
+package com.projctr.protostorage.migration
 
-class DbTypeMapperException : Throwable {
+class StorageMigrationException : Throwable {
     constructor() : super()
     constructor(message: String?) : super(message)
     constructor(cause: Throwable) : super(cause)

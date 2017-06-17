@@ -1,4 +1,4 @@
-package com.projctr.protostore.queries
+package com.projctr.protostorage.queries
 
 interface IStorageResultQuery<out T> {
     fun execute(): T

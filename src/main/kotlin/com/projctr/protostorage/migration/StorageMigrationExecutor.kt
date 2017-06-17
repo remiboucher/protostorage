@@ -1,7 +1,7 @@
-package com.projctr.protostore.migration
+package com.projctr.protostorage.migration
 
-import com.projctr.protostore.configuration.StorageObjectConfiguration
-import com.projctr.protostore.util.DbTypeMapper
+import com.projctr.protostorage.configuration.StorageObjectConfiguration
+import com.projctr.protostorage.util.DbTypeMapper
 import org.skife.jdbi.v2.DBI
 import org.skife.jdbi.v2.util.IntegerColumnMapper
 

@@ -1,6 +1,6 @@
-package com.projctr.protostore.migration
+package com.projctr.protostorage.queries
 
-class StorageMigrationException : Throwable {
+class StorageQueryException : Throwable {
     constructor() : super()
     constructor(message: String?) : super(message)
     constructor(cause: Throwable) : super(cause)

@@ -1,4 +1,4 @@
-package com.projctr.protostore.queries
+package com.projctr.protostorage.queries
 
 import org.skife.jdbi.v2.DBI
 

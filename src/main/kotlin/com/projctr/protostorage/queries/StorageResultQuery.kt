@@ -1,6 +1,6 @@
-package com.projctr.protostore.queries
+package com.projctr.protostorage.queries
 
-import com.projctr.protostore.configuration.StorageObjectConfiguration
+import com.projctr.protostorage.configuration.StorageObjectConfiguration
 import org.skife.jdbi.v2.DBI
 import org.skife.jdbi.v2.Query
 import sun.reflect.generics.reflectiveObjects.NotImplementedException

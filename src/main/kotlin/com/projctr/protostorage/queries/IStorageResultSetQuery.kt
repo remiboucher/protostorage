@@ -1,4 +1,4 @@
-package com.projctr.protostore.queries
+package com.projctr.protostorage.queries
 
 interface IStorageResultSetQuery<out T> {
     fun where(fieldName: String)

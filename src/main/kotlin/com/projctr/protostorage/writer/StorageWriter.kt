@@ -1,7 +1,7 @@
-package com.projctr.protostore.writer
+package com.projctr.protostorage.writer
 
 import com.google.protobuf.GeneratedMessage
-import com.projctr.protostore.configuration.StorageObjectConfiguration
+import com.projctr.protostorage.configuration.StorageObjectConfiguration
 import org.skife.jdbi.v2.DBI
 
 internal class StorageWriter<in T: GeneratedMessage>(private val objectConfiguration: StorageObjectConfiguration, private val dbi: DBI) {

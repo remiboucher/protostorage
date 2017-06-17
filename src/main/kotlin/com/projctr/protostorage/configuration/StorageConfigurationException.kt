@@ -1,4 +1,4 @@
-package com.projctr.protostore.configuration
+package com.projctr.protostorage.configuration
 
 class StorageConfigurationException : Throwable {
     constructor() : super()

@@ -1,9 +1,9 @@
-package com.projctr.protostore
+package com.projctr.protostorage
 
 import com.google.protobuf.GeneratedMessage
-import com.projctr.protostore.configuration.StorageConfiguration
-import com.projctr.protostore.migration.StorageMigrationExecutor
-import com.projctr.protostore.queries.StorageQuery
+import com.projctr.protostorage.configuration.StorageConfiguration
+import com.projctr.protostorage.migration.StorageMigrationExecutor
+import com.projctr.protostorage.queries.StorageQuery
 import org.skife.jdbi.v2.DBI
 import java.util.*
 import kotlin.reflect.KClass

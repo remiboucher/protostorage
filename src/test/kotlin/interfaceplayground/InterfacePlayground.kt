@@ -1,8 +1,8 @@
 package interfaceplayground
 
-import com.projctr.protostore.Protostore
-import com.projctr.protostore.configuration.StorageConfiguration
-import com.projctr.protostore.configuration.StorageConnectionConfiguration
+import com.projctr.protostorage.Protostore
+import com.projctr.protostorage.configuration.StorageConfiguration
+import com.projctr.protostorage.configuration.StorageConnectionConfiguration
 import interfaceplayground.proto.AddressBookProtos
 
 // making sure that the interface makes sense. Please ignore, real tests coming soon!

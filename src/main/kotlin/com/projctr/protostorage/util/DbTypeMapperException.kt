@@ -1,6 +1,6 @@
-package com.projctr.protostore.queries
+package com.projctr.protostorage.util
 
-class StorageQueryException : Throwable {
+class DbTypeMapperException : Throwable {
     constructor() : super()
     constructor(message: String?) : super(message)
     constructor(cause: Throwable) : super(cause)

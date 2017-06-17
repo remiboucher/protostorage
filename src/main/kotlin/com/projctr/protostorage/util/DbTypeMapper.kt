@@ -1,4 +1,4 @@
-package com.projctr.protostore.util
+package com.projctr.protostorage.util
 
 import com.google.protobuf.Descriptors.FieldDescriptor as FieldDescriptor
 

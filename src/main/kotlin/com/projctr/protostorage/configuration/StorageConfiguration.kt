@@ -1,4 +1,4 @@
-package com.projctr.protostore.configuration
+package com.projctr.protostorage.configuration
 
 import com.google.protobuf.GeneratedMessage
 import kotlin.reflect.KClass
