@@ -1,12 +1,12 @@
 package com.projctr.protostorage.configuration
 
-import com.google.protobuf.GeneratedMessage
+import com.google.protobuf.MessageOrBuilder
 import kotlin.reflect.KClass
 
 class StorageConfiguration(val connectionConfiguration: StorageConnectionConfiguration) {
-    private val configuredObjects : MutableMap<KClass<out GeneratedMessage>, StorageObjectConfiguration> = mutableMapOf()
+    private val configuredObjects : MutableMap<KClass<out MessageOrBuilder>, StorageObjectConfiguration> = mutableMapOf()
 
-    fun registerClass(cls: KClass<out GeneratedMessage>) : StorageObjectConfiguration {
+    fun registerClass(cls: KClass<out MessageOrBuilder>) : StorageObjectConfiguration {
         if (configuredObjects.containsKey(cls)) throw StorageConfigurationException("Class $cls is already registered")
 
         val configuration = StorageObjectConfiguration(cls)
@@ -20,7 +20,7 @@ class StorageConfiguration(val connectionConfiguration: StorageConnectionConfigu
         configuredObjects[objectConfiguration.mappedClass] = objectConfiguration
     }
 
-    internal fun getObjectConfiguration(cls: KClass<out GeneratedMessage>) : StorageObjectConfiguration {
+    internal fun getObjectConfiguration(cls: KClass<out MessageOrBuilder>) : StorageObjectConfiguration {
         return configuredObjects[cls] ?: throw StorageConfigurationException("Class $cls is not registered")
     }
 

@@ -1,11 +1,11 @@
 package com.projctr.protostorage.configuration
 
 import com.google.protobuf.Descriptors
-import com.google.protobuf.GeneratedMessage
+import com.google.protobuf.MessageOrBuilder
 import kotlin.reflect.KClass
 import kotlin.reflect.staticFunctions
 
-class StorageObjectConfiguration constructor(val mappedClass: KClass<out GeneratedMessage>) {
+class StorageObjectConfiguration constructor(val mappedClass: KClass<out MessageOrBuilder>) {
     var tableName = mappedClass.simpleName ?: ""
     private val mutablePrimaryKeyFields : MutableList<Descriptors.FieldDescriptor> = mutableListOf()
     private val mutableIndexedColumns : MutableList<Descriptors.FieldDescriptor> = mutableListOf()

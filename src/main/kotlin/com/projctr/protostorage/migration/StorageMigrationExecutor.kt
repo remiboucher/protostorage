@@ -19,7 +19,7 @@ internal class StorageMigrationExecutor(val objectConfigurations: Iterable<Stora
                 for (pk in objectConfiguration.primaryKeyFields) {
                     val pkName = "id_${pk.name}"
                     pkNames.add(pkName)
-                    builder.append("$pkName ${DbTypeMapper.getDbType(pk.type)} NOT NULL")
+                    builder.append("$pkName ${DbTypeMapper.getDbType(pk.type)} NOT NULL, ")
                 }
                 builder.append("constraint pk_${objectConfiguration.tableName} primary key (${pkNames.joinToString(", ")}), ")
                 builder.append("data bytea NOT NULL )")

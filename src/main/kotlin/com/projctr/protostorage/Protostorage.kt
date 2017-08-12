@@ -4,13 +4,14 @@ import com.google.protobuf.GeneratedMessage
 import com.projctr.protostorage.configuration.StorageConfiguration
 import com.projctr.protostorage.migration.StorageMigrationExecutor
 import com.projctr.protostorage.queries.StorageQuery
+import com.projctr.protostorage.writer.StorageWriter
 import org.skife.jdbi.v2.DBI
 import java.util.*
 import kotlin.reflect.KClass
 
-class Protostore private constructor(val configuration: StorageConfiguration, val connectionUrl: String, val connectionProperties: Properties) {
+class Protostorage private constructor(val configuration: StorageConfiguration, val connectionUrl: String, val connectionProperties: Properties) {
     companion object Factory {
-        fun create(configuration: StorageConfiguration, migrateDatabase: Boolean = true): Protostore {
+        fun create(configuration: StorageConfiguration, migrateDatabase: Boolean = true): Protostorage {
             with(configuration.connectionConfiguration) {
                 val connectionUrl = "jdbc:postgresql://$host/$databaseName"
                 val properties = Properties().apply {
@@ -19,7 +20,7 @@ class Protostore private constructor(val configuration: StorageConfiguration, va
                     setProperty("ssl", useSsl.toString())
                 }
 
-                val instance = Protostore(configuration, connectionUrl, properties)
+                val instance = Protostorage(configuration, connectionUrl, properties)
 
                 if (migrateDatabase) {
                     instance.migrate()
@@ -37,6 +38,11 @@ class Protostore private constructor(val configuration: StorageConfiguration, va
 
     fun <T: GeneratedMessage> createQuery(cls: KClass<out T>): StorageQuery<T> {
         return StorageQuery(configuration.getObjectConfiguration(cls), getDbi())
+    }
+
+    fun <T: GeneratedMessage> insert(obj: T) {
+        val writer = StorageWriter<T>(configuration.getObjectConfiguration(obj.javaClass.kotlin), getDbi())
+        writer.insert(obj)
     }
 
     private fun getDbi(): DBI {
