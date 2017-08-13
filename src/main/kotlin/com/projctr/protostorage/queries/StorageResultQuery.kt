@@ -1,16 +1,16 @@
 package com.projctr.protostorage.queries
 
+import com.google.protobuf.*
 import com.projctr.protostorage.configuration.StorageObjectConfiguration
 import org.skife.jdbi.v2.DBI
 import org.skife.jdbi.v2.Query
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
+import org.skife.jdbi.v2.util.ByteArrayColumnMapper
 
-class StorageResultQuery<out TResultType, TKeyType>(private val objectConfiguration: StorageObjectConfiguration,
-                                                    private val id: TKeyType,
-                                                    private val dbi: DBI) : IStorageResultQuery<TResultType> {
+class StorageResultQuery<out TResultType : MessageOrBuilder, TKeyType>(private val objectConfiguration: StorageObjectConfiguration,
+                                                                       private val id: TKeyType,
+                                                                       private val dbi: DBI) : IStorageResultQuery<TResultType> {
     override fun execute(): TResultType {
-        // deserialize(executeRaw)
-        throw NotImplementedException()
+        return objectConfiguration.parser.parseFrom(executeRaw()) as TResultType? ?: throw StorageQueryException("Could not deserialize data")
     }
 
     override fun executeRaw(): ByteArray {
@@ -35,7 +35,7 @@ class StorageResultQuery<out TResultType, TKeyType>(private val objectConfigurat
                     builder.append("id_${primaryKeyFields[0].name} = $id")
                 }
 
-                query = it.createQuery(builder.toString()).map(ByteArray::class.java)
+                query = it.createQuery(builder.toString()).map(ByteArrayColumnMapper.INSTANCE)
 
                 return query.first()
             }
