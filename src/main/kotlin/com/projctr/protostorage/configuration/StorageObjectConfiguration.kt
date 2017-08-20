@@ -20,7 +20,7 @@ class StorageObjectConfiguration (val mappedClass: KClass<out MessageOrBuilder>)
         mutablePrimaryKeyFields.add(getFieldDescriptor(fieldName))
     }
 
-    fun addIndexedColumns(fieldName: String) {
+    fun addIndexedColumn(fieldName: String) {
         mutableIndexedColumns.add(getFieldDescriptor(fieldName))
     }
 

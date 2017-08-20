@@ -11,15 +11,25 @@ fun main(args : Array<String>) {
     with(config.registerClass(AddressBookProtos.Person::class)) {
         tableName = "person"
         addPrimaryKey("id")
+        addIndexedColumn("email")
     }
     val protostorage: Protostorage = Protostorage.create(config)
 
     val personToInsert = AddressBookProtos.Person.newBuilder()
     personToInsert.id = 11
     personToInsert.name = "Rémi"
-    personToInsert.email = "remi@procjtr.com"
+    personToInsert.email = "remi@projctr.com"
 
-    protostorage.insert(personToInsert.build())
+    // will cause duplicate key exception if already inserted
+    //protostorage.insert(personToInsert.build())
 
     val person = protostorage.createQuery(AddressBookProtos.Person::class).getById("11").execute()
+
+    val projctrEmails = with (protostorage.createQuery(AddressBookProtos.Person::class).get()) {
+        where("email")
+        like("%@projctr.com")
+        execute()
+    }
+
+    println("There are ${projctrEmails.size} projctr emails!")
 }

@@ -15,6 +15,6 @@ class StorageQuery<out T: MessageOrBuilder>(private val objectConfiguration: Sto
     }
 
     fun get(): IStorageResultSetQuery<T> {
-        return StorageResultSetQuery(dbi)
+        return StorageResultSetQuery(objectConfiguration, dbi)
     }
 }
